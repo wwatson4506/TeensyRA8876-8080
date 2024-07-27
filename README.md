@@ -1,5 +1,5 @@
-# TeensyRA8876Combined
-A universal RA8876 library combining SPI and 8080 drivers for Teensy boards and variants.
+# TeensyRA8876-8080
+A RA8876 8080 parallel driver library for Teensy boards and variants.
 
 # PINOUTS
 ## WIRED
