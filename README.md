@@ -15,6 +15,7 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 *** CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode***
 
 40 pin dual inline connector pinouts can be found here.
+
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_RTP_Interfacing.pdf
 
 ## WIRED
