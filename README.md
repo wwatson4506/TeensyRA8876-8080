@@ -12,6 +12,11 @@ Communication with the Teensy is accomplished using the 8080 parallel mode of Fl
 Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI examples folders.
 
 # PINOUTS
+*** CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode***
+
+40 pin dual inline connector pinouts can be found here.
+https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_RTP_Interfacing.pdf
+
 ## WIRED
 ### Dev Board 5 <_______> RA8876
 
