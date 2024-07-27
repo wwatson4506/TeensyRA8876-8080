@@ -3,9 +3,13 @@
 
 This library is designed to be used with the TeensyRa8876-GFX-Common library and can be found here:
 https://github.com/wwatson4506/TeensyRA8876-GFX-Common
+
 This driver also uses a new FlexIO library found here:
 https://github.com/KurtE/FlexIO_t4/tree/master
-Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO.
+
+Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO. To install unzip the zip file in the Arduino/libraries folder.
+
+Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI examples folders.
 
 # PINOUTS
 ## WIRED
@@ -75,4 +79,4 @@ Use These 8 data lines for 16-bit data bus.
 - TFT 5V ________________> 3,4,37,38
 - GND    ________________> 1,2,13,31,39,40
 
-This is WIP. More to come.
+# This is WIP. More to come.
