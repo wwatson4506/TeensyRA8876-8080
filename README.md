@@ -3,7 +3,7 @@ A RA8876 8080 parallel driver library for Teensy boards and variants.
 
 # PINOUTS
 ## WIRED
-### Dev Board 5 <____________> RA8876
+### Dev Board 5 <__________> RA8876
 
       PIN                     PIN
 *********************************
