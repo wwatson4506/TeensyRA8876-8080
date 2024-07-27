@@ -25,7 +25,7 @@
 #define BUS_SPEED 20 //Available settings 2,4,8,12,20,24,30,40,60,120
 
 //External backlight control connected to this Arduino pin
-#define BACKLITE 5 
+// #define BACKLITE 5 
 // #define BACKLITE 29 
 
 // Uncomment to use FT5206 touch.
