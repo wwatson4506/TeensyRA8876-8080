@@ -711,6 +711,9 @@ FASTRUN void RA8876_t41_p::flexIRQ_Callback() {
                 }
             }
         }
+	p->TIMSTAT |= (1U << 0);
+    	/*Wait for transfer to be completed */
+    	while(0 == (p->TIMSTAT |= (1U << 0))) {}
     }
     asm("dsb");
 }
