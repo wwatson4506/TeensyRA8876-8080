@@ -62,7 +62,7 @@ void setup() {
   while (!Serial && millis() < 1000) {} //wait for Serial Monitor
 
   // Set 8/16bit mode
-  tft.setBusWidth(USE_8080_16_BIT_MODE);
+  tft.setBusWidth(USE_8080_8_BIT_MODE);
   // DB5.0 WR pin, RD pin, D0 pin.
   tft.setFlexIOPins(RA8876_WR,RA8876_RD,RA8876_D0);
   tft.begin(BUS_SPEED); // 
