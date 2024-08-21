@@ -1,56 +1,35 @@
 #include "RA8876_Config_8080.h"
 #include <RA8876_t41_p.h>
 
-#undef USE_MMOD_ATP_ADAPTER
-//#define DB5_USE_CSI
-//#define USE_DB5_SHIELD
-//#define VSYNC_PIN 21
-
-#ifdef USE_DB5_SHIELD
-uint8_t dc = 55;
-uint8_t cs = 53;
-uint8_t rst = 54;
-#else
-uint8_t dc = 13;
-uint8_t cs = 11;
-uint8_t rst = 12;
-#endif
-#define BACKLITE 5  //External backlight control connected to this Arduino pin
-//RA8876_t41_p lcd = RA8876_t41_p(dc,cs,rst); //(dc, cs, rst)
-RA8876_t41_p lcd = RA8876_t41_p(dc, cs, rst);  //(dc, cs, rst)
+RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
 
 uint32_t start = 0;
 uint32_t end = 0;
-uint8_t busSpeed = 12;
 
 uint16_t *sdram_image;
 
 void setup() {
     while (!Serial && millis() < 3000) {}  //wait for Serial Monitor
-    Serial.printf("%c MicroMod Board and RA8876 parallel 8080 mode testing (8Bit/DMA)\n\n", 12);
+    Serial.printf("%c DB5 Board and RA8876 parallel 8080 mode testing (8Bit/16Bit/DMA) with SDRAM buffer\n\n", 12);
     //  Serial.print(CrashReport);
 
     // Set 16bit mode
-//      lcd.setBusWidth(16);
+      tft.setBusWidth(USE_8080_8_BIT_MODE);
     // DB5.0 WR pin, RD pin, D0 pin.
-      lcd.setFlexIOPins(53,52,40);
+      tft.setFlexIOPins(RA8876_WR,RA8876_RD,RA8876_D0);
 
-#ifdef USE_DB5_SHIELD
-    lcd.setBusWidth(16);
-    lcd.setFlexIOPins(56, 52, 40);
-#endif
-    lcd.begin(busSpeed);  // 20 is working in 8bit and 16bit mode on T41
+    tft.begin(BUS_SPEED);
     delay(100);
 
     Serial.print("Bus speed: ");
-    Serial.print(busSpeed, DEC);
+    Serial.print(BUS_SPEED, DEC);
     Serial.println(" MHZ");
     Serial.print("Bus Width: ");
-    Serial.print(lcd.getBusWidth(), DEC);
+    Serial.print(tft.getBusWidth(), DEC);
     Serial.println("-bits");
 
-    lcd.graphicMode(true);
-    lcd.setRotation(0);
+    tft.graphicMode(true);
+    tft.setRotation(0);
 
     sdram_image = (uint16_t*)sdram_malloc(1024*600*2);
 
@@ -87,14 +66,14 @@ void setup() {
 }
 
 void loop() {
-    lcd.fillScreen(YELLOW);
+    tft.fillScreen(YELLOW);
     waitforInput();
-    lcd.writeRect(0, 0, 1024, 600, sdram_image);
+    tft.writeRect(0, 0, 1024, 600, sdram_image);
     waitforInput();
-    lcd.fillScreen(MAGENTA);
+    tft.fillScreen(MAGENTA);
     waitforInput();
-    lcd.pushPixels16bitDMA(sdram_image, 0, 0, 1024, 600);  // FLASHMEM buffer
-//    lcd.pushPixels16bitAsync(sdram_image, 0, 0, 1024, 600);  // FLASHMEM buffer
+    tft.pushPixels16bitDMA(sdram_image, 0, 0, 1024, 600);  // FLASHMEM buffer
+//    tft.pushPixels16bitAsync(sdram_image, 0, 0, 1024, 600);  // FLASHMEM buffer
     waitforInput();
 }
 
