@@ -90,6 +90,7 @@ void loop() {
   tft.writeRect(530,0,480,320,flexio_teensy_mm);
   waitforInput();
 #else
+#if defined(ARDUINO_TEENSY_DEVBRD5) || defined(ARDUINO_TEENSY_MICROMOD)
   tft.fillScreen(0x0010);
   start = micros();
   DMA_frame_active = true;
@@ -114,6 +115,9 @@ void loop() {
                                                             // above 12 MHZ. Causes distorted image. SDRAM buffer is ok.
   end = micros() - start;
   Serial.printf("Rendered in %dus\n\n",end);
+#else
+  Serial.println("** DMA IS ONLY AVAILABLE ON THE MICROMOD OR DB5 BOARDS IN 8080 PARALLEL MODE **");
+#endif //DMA is not available on the T4.x in 8080 parallel mode.
   waitforInput();
 #endif
 }

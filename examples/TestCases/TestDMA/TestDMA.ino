@@ -28,7 +28,7 @@ void setup() {
   tft.setFlexIOPins(RA8876_WR,RA8876_RD,RA8876_D0);
   tft.begin(BUS_SPEED);
 
-  Serial.printf("%c MicroMod Board and RA8876 parallel 8080 mode testing (8Bit/DMA)\n\n",12);
+  Serial.printf("%c TEENSY and RA8876 parallel 8080 mode testing (8Bit/16Bit/DMA/ASYNC)\n\n",12);
 //  Serial.print(CrashReport);
 
   Serial.print("Bus speed: ");
@@ -49,7 +49,7 @@ void loop() {
 //  tft.writeRect(10,10,575,424,teensy41_Cardlike);
 //  tft.writeRect(10,280,480,320,teensy41);
 //  tft.writeRect(530,0,480,320,flexio_teensy_mm);
-
+#if defined(ARDUINO_TEENSY_DEVBRD5) || defined(ARDUINO_TEENSY_MICROMOD)
   tft.fillScreen(0x0010);
   start = micros();
   tft.pushPixels16bitDMA(teensy41_Cardlike,1,1,575,424); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
@@ -70,6 +70,9 @@ void loop() {
                                                             // above 12 MHZ. Causes distorted image. SDRAM buffer is ok.
   end = micros() - start;
   Serial.printf("Wrote %d bytes in %dus\n\n",480*320, end);
+#else
+  Serial.println("** DMA IS ONLY AVAILABLE ON THE MICROMOD OR DB5 BOARDS IN 8080 PARALLEL MODE **");
+#endif //DMA is not available on the T4.x in 8080 parallel mode.
   waitforInput();
 }
 

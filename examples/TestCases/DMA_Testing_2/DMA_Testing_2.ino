@@ -6,13 +6,19 @@ RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET)
 uint32_t start = 0;
 uint32_t end = 0;
 
+#if defined(ARDUINO_TEENSY_DEVBRD5)
 uint16_t *sdram_image;
+#endif
 
 void setup() {
     while (!Serial && millis() < 3000) {}  //wait for Serial Monitor
     Serial.printf("%c DB5 Board and RA8876 parallel 8080 mode testing (8Bit/16Bit/DMA) with SDRAM buffer\n\n", 12);
     //  Serial.print(CrashReport);
 
+#if !defined(ARDUINO_TEENSY_DEVBRD5)
+    Serial.println("** THIS SKETCH ONLY WORKS WITH THE DEV BOARD 5 THAT HAS SDRAM. STOPPING HERE... **");
+    while(1);
+#endif
     // Set 16bit mode
       tft.setBusWidth(USE_8080_8_BIT_MODE);
     // DB5.0 WR pin, RD pin, D0 pin.
@@ -31,8 +37,8 @@ void setup() {
     tft.graphicMode(true);
     tft.setRotation(0);
 
+#if defined(ARDUINO_TEENSY_DEVBRD5)
     sdram_image = (uint16_t*)sdram_malloc(1024*600*2);
-
     // lets fill it with RED, have a blue ring around edges. and Green one pixel around the edge.
     uint32_t x, y;
     uint16_t *pb = sdram_image;
@@ -62,10 +68,11 @@ void setup() {
     }
     pb += 1024; // last row.
     for (x = 0; x < 1024; x++) pb[x] = GREEN;
-
+#endif
 }
 
 void loop() {
+#if defined(ARDUINO_TEENSY_DEVBRD5)
     tft.fillScreen(YELLOW);
     waitforInput();
     tft.writeRect(0, 0, 1024, 600, sdram_image);
@@ -74,6 +81,7 @@ void loop() {
     waitforInput();
     tft.pushPixels16bitDMA(sdram_image, 0, 0, 1024, 600);  // FLASHMEM buffer
 //    tft.pushPixels16bitAsync(sdram_image, 0, 0, 1024, 600);  // FLASHMEM buffer
+#endif
     waitforInput();
 }
 
