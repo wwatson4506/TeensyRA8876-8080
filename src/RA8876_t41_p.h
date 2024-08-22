@@ -170,7 +170,7 @@ class RA8876_t41_p : public RA8876_common {
 
     typedef void (*CBF)();
     CBF _callback;
-    void onCompleteCB(CBF callback) {_callback = callback; }
+    void onCompleteCB(CBF callback);// { _callback = callback; }
     bool isCB = false;
     void _onCompleteCB();
 
@@ -184,10 +184,10 @@ class RA8876_t41_p : public RA8876_common {
     const FlexIOHandler::FLEXIO_Hardware_t *hw;
 
     // DMA 
-    //bool isDMACB = false;
+    bool isDMACB = false;
     void _onDMACompleteCB();
 	CBF _DMAcallback;
-	void onDMACompleteCB(CBF callback) {_DMAcallback = callback; }
+	void onDMACompleteCB(CBF callback);
 	void FlexIO_Config_DMA_MultiBeat();
 	void MulBeatWR_nPrm_DMA(const void *value, uint32_t const length);
 	void pushPixels16bitDMA(const uint16_t * pcolors, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);

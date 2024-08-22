@@ -711,9 +711,9 @@ FASTRUN void RA8876_t41_p::flexIRQ_Callback() {
                 }
             }
         }
-	p->TIMSTAT |= (1U << 0);
-    	/*Wait for transfer to be completed */
-    	while(0 == (p->TIMSTAT |= (1U << 0))) {}
+		p->TIMSTAT |= (1U << 0);
+		/*Wait for transfer to be completed */
+		while(0 == (p->TIMSTAT |= (1U << 0))) {}
     }
     asm("dsb");
 }
@@ -1076,9 +1076,9 @@ FASTRUN void RA8876_t41_p::flexDma_Callback() {
   however, it seems like a waste of time to wait here, since the process otherwise completes in the background and the shifter buffers are ready to receive new data while the transfer completes.
   I think in most applications you could continue without waiting. You can start a new DMA transfer as soon as the first one completes (no need to wait for FlexIO to finish shifting). */
   WR_DMATransferDone = true;
-  //if(isDMACB) {
+  if(isDMACB) {
     _onDMACompleteCB();
-  //}
+  }
 }
 
 void RA8876_t41_p::DMAerror() {
@@ -1104,6 +1104,16 @@ FASTRUN void RA8876_t41_p::_onCompleteCB() {
     _callback();
   }
   return;
+}
+
+FLASHMEM void RA8876_t41_p::onCompleteCB(CBF callback) {
+    _callback = callback;
+    isCB = true;
+}
+
+FLASHMEM void RA8876_t41_p::onDMACompleteCB(CBF callback) {
+    _DMAcallback = callback;
+    isDMACB = true;
 }
 
 //**********************************************************************
