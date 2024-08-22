@@ -19,8 +19,8 @@
 #define RA8876_8080_DC 13
 #define RA8876_8080_RESET 12
 #define RA8876_D0 19
-#define RA8876_RD 37    // FlexIO3:10: RD
-#define RA8876_WR 36    // FlexIO3:11 WR
+#define RA8876_RD 37    // FlexIO3:19: RD
+#define RA8876_WR 36    // FlexIO3:18: WR
 
 #elif defined(ARDUINO_TEENSY_DEVBRD5)
 // Hardware defines DB5 board and Kurt's shield
