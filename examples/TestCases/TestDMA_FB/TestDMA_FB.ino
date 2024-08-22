@@ -9,7 +9,18 @@ RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET)
 
 uint32_t start = 0;
 uint32_t end =  0;
-uint8_t busSpeed = 12;
+
+volatile bool ASYNC_frame_active = false;
+void ASYNC_frame_complete_callback() {
+//    Serial.println("\n*** ASYNC Frame Complete Callback ***");
+    ASYNC_frame_active = false;
+}
+
+volatile bool DMA_frame_active = false;
+void DMA_frame_complete_callback() {
+//    Serial.println("\n*** DMA Frame Complete Callback ***");
+    DMA_frame_active = false;
+}
 
 void setup() {
   //I'm guessing most copies of this display are using external PWM
@@ -32,12 +43,12 @@ void setup() {
   tft.setBusWidth(USE_8080_8_BIT_MODE);
   // DB5.0 WR pin, RD pin, D0 pin.
   tft.setFlexIOPins(RA8876_WR,RA8876_RD,RA8876_D0);
-  tft.begin(busSpeed); // 
+  tft.begin(BUS_SPEED); // 
 
-  Serial.printf("%c MicroMod Board and RA8876 parallel 8080 mode testing (8Bit/DMA)\n\n",12);
+  Serial.printf("%c RA8876 parallel 8080 mode testing (8Bit/16Bit ASYNC/DMA)\n\n",12);
 
   Serial.print("Bus speed: ");
-  Serial.print(busSpeed,DEC);
+  Serial.print(BUS_SPEED,DEC);
   Serial.println(" MHZ");
   Serial.print("Bus Width: ");
   Serial.print(tft.getBusWidth(),DEC);
@@ -45,28 +56,27 @@ void setup() {
 
   tft.graphicMode(true);
   tft.setRotation(0);
-  tft.onCompleteCB(&frame_complete_callback);
 
-}
-
-volatile bool frame_active = false;
-void frame_complete_callback() {
-    Serial.println("\n*** Frame Complete Callback ***");
-    frame_active = false;
+  tft.onCompleteCB(ASYNC_frame_complete_callback);
+  tft.onDMACompleteCB(DMA_frame_complete_callback);
 }
 
 uint16_t pixel_data[4000];
 
 void loop() {
-#if 1    
+#if 1 // ******** Set to 1 for Async testing, set to 0 for DMA testing. *********   
   tft.fillScreen(BLUE);
-  frame_active = true;
+  ASYNC_frame_active = true;
+  start = micros();
   tft.pushPixels16bitAsync(teensy41_Cardlike,10,10,575,424);
-//  while(frame_active) {}; //NOT WORKING HANGS!!!!!
-  delay(250); // make sure
-  MemoryHexDump(Serial, teensy41_Cardlike, 128, true, "\nObject:\n", -1, 0);
-  tft.readRect(10, 10, 575, 2, pixel_data);
-  MemoryHexDump(Serial, pixel_data, 128, true, "\nReadBack:\n", -1, 0);
+  while(ASYNC_frame_active) {}; //******** FIXED **********
+  end = micros() - start;
+  Serial.printf("Waiting for ASYNC transfer to complete took: %dus\n\n",end);
+
+//  delay(250); // make sure
+//  MemoryHexDump(Serial, teensy41_Cardlike, 128, true, "\nObject:\n", -1, 0);
+//  tft.readRect(10, 10, 575, 2, pixel_data);
+//  MemoryHexDump(Serial, pixel_data, 128, true, "\nReadBack:\n", -1, 0);
 
   waitforInput();
   tft.pushPixels16bitAsync(flexio_teensy_mm,0,0,480,320); // 480x320
@@ -82,28 +92,35 @@ void loop() {
 #else
   tft.fillScreen(0x0010);
   start = micros();
-  tft.pushPixels16bitDMA(teensy41,1,1,480,320);    // FLASHMEM buffer
+  DMA_frame_active = true;
+  tft.pushPixels16bitDMA(teensy41,1,1,480,320); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
+  while(DMA_frame_active) {}; //******** FIXED **********
+                                                // above 12 MHZ. Causes distorted image. SDRAM buffer is ok.
   end = micros() - start;
-  Serial.printf("Wrote %d bytes in %dus\n\n",480*320, end);
+  Serial.printf("Waiting for DMA transfer to complete took: %dus\n\n",end);
   waitforInput();
+
   tft.fillScreen(0x0010);
   start = micros();
-  tft.pushPixels16bitDMA(teensy41_Cardlike,1,1,575,424);    // FLASHMEM buffer
+  tft.pushPixels16bitDMA(teensy41_Cardlike,1,1,575,424); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
+                                                         // above 12 MHZ. Causes distorted image. SDRAM buffer is ok.
   end = micros() - start;
-  Serial.printf("Wrote %d bytes in %dss\n\n",575*424, end);
+  Serial.printf("Rendered in %dus\n\n",end);
   waitforInput();
+
   tft.fillScreen(0x0010);
   start = micros();
-  tft.pushPixels16bitDMA(flexio_teensy_mm,530,260,480,320); // FLASHMEM buffer
+  tft.pushPixels16bitDMA(flexio_teensy_mm,530,260,480,320); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
+                                                            // above 12 MHZ. Causes distorted image. SDRAM buffer is ok.
   end = micros() - start;
-  Serial.printf("Wrote %d bytes in %dus\n\n",480*320, end);
+  Serial.printf("Rendered in %dus\n\n",end);
   waitforInput();
 #endif
 }
 
 void waitforInput()
 {
-  Serial.println("Press anykey to continue");
+  Serial.println("Press anykey to continue\n");
   while (Serial.read() == -1) ;
   while (Serial.read() != -1) ;
 }
