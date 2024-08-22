@@ -1,6 +1,5 @@
 #include <Adafruit_GFX.h>
 #include "RA8876_Config_8080.h"
-//************************************ OpenSans24 FONT NOT WORKING SPI MODE ******************************
 #include <RA8876_t41_p.h>
 
 RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
