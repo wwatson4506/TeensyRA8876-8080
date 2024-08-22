@@ -4,6 +4,8 @@
 // By Frank Bösing
 //
 // https://forum.pjrc.com/threads/32601-SPI-Library-Issue-w-ILI9341-TFT-amp-PN532-NFC-Module-on-Teensy-3-2?p=94534&viewfull=1#post94534
+// Modified for testing with T4x, MicroMod and DB5 using 8080 parallel mode of the RA8876 TFT.
+//
 #include "RA8876_Config_8080.h"
 #include <RA8876_t41_p.h>
 #include "font_ComicSansMS.h"
