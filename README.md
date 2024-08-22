@@ -85,4 +85,5 @@ Use These 8 data lines for 16-bit data bus.
 - TFT 5V ________________> 3,4,37,38
 - GND    ________________> 1,2,13,31,39,40
 
+## NOTE: The T4.1 uses FlexIO2 which does not support DMA. Non-blocking async mode is supported.
 # This is WIP. More to come.
