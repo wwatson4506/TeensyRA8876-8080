@@ -1,5 +1,5 @@
 // treedee.ino example
-// Taken from sumotoy's RA8875 library
+// Taken from sumotoy's RA8875 library using 8080 parallel mode.
 // and modified for use with the RA8876.
 #include "Arduino.h"
 #include "RA8876_Config_8080.h"
