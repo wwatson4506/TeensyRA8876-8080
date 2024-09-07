@@ -5,9 +5,11 @@
 #ifndef RA8876_CONFIG_H
 #define RA8876_CONFIG_H
 
-#define USE_8080_8_BIT_MODE 8
-#define USE_8080_16_BIT_MODE 16
-#define BUS_SPEED 20 //Available settings 2,4,8,12,20,24,30,40,60,120
+// Select 8 or 16 for your bus width.
+#define RA8876_8080_BUS_WIDTH 16
+
+// Set the bus speed in megahertz.
+#define BUS_SPEED 12 //Available settings 2,4,8,12,20,24,30,40,60,120
 
 //External backlight control connected to this Arduino pin
 // Otherwise 3.3v
