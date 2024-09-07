@@ -55,6 +55,16 @@
 #define DISPLAY_D5 45 // 45      B0_09   FlexIO2:9
 #define DISPLAY_D6 6  // 6       B0_10   FlexIO2:10
 #define DISPLAY_D7 9  // 9       B0_11   FlexIO2:11
+/*
+#define DISPLAY_D8  32  // 32     B0_12   FlexIO2:12
+#define DISPLAY_D9  47  // 47     B0_11   FlexIO2:13
+#define DISPLAY_D10 48  // 48     B0_11   FlexIO2:14
+#define DISPLAY_D11 49  // 49     B0_11   FlexIO2:15
+#define DISPLAY_D12 8   // 8      B1_00   FlexIO2:16
+#define DISPLAY_D13 7   // 7      B1_01   FlexIO2:17
+#define DISPLAY_D14 50  // 50     B1_02   FlexIO2:18
+#define DISPLAY_D15 51  // 51     B1_03   FlexIO2:19
+*/
 
 
 #else // #if defined(ARDUINO_TEENSY_MICROMOD)
