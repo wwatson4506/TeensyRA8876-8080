@@ -6,7 +6,7 @@
 #define RA8876_CONFIG_H
 
 // Select 8 or 16 for your bus width.
-#define RA8876_8080_BUS_WIDTH 16
+#define RA8876_8080_BUS_WIDTH 8
 
 // Set the bus speed in megahertz.
 #define BUS_SPEED 20 //Available settings 2,4,8,12,20,24,30,40,60,120
