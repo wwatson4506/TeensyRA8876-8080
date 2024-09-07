@@ -9,6 +9,8 @@
 #include <RA8876_t41_p.h>
 #include <math.h>
 
+// RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
+// src/RA8876_Config_8080.h.
 RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
 
 // Array of RA8876 Basic Colors
@@ -47,11 +49,12 @@ void setup() {
   Serial.begin(115200);
   while (!Serial && millis() < 1000) {} //wait for Serial Monitor
 
-  // Set 8/16bit mode
-  tft.setBusWidth(USE_8080_8_BIT_MODE);
-  // DB5.0 WR pin, RD pin, D0 pin.
-  tft.setFlexIOPins(RA8876_WR,RA8876_RD,RA8876_D0);
-  tft.begin(BUS_SPEED); // 
+  // Set 8/16bit bus mode. Default is 8bit bus mode.
+  tft.setBusWidth(RA8876_8080_BUS_WIDTH); // RA8876_8080_BUS_WIDTH is defined in
+                                          // src/RA8876_Config_8080.h. 
+  tft.begin(BUS_SPEED); // RA8876_8080_BUS_WIDTH is defined in
+                        // src/RA8876_Config_8080.h. Default is 20MHz. 
+ 
 
   tft.graphicMode(true);
   tft.setTextCursor(0, 0);
@@ -131,23 +134,6 @@ void drawPointerHelper(uint8_t index, int16_t val, uint16_t x, uint16_t y, uint1
   dsec = (((float)(uint16_t)(val - minValue) / (float)(uint16_t)(maxValue - minValue) * degreesVal[index][1]) + degreesVal[index][0]) * (PI / 180);
   uint16_t w = (uint16_t)(1 + x + (cos(dsec) * (r / 1.35)));
   uint16_t h = (uint16_t)(1 + y + (sin(dsec) * (r / 1.35)));
-  /*
-    min: x:713 | y:63 | w:673 | h:87
-    min: x:713 | y:63 | w:754 | h:87
-  */
-  /*
-    if (index == 5){
-    Serial.print("x:");
-    Serial.print(x);
-    Serial.print(" | y:");
-    Serial.print(y);
-    Serial.print(" | w:");
-    Serial.print(w);
-    Serial.print(" | h:");
-    Serial.print(h);
-    Serial.print("\n");
-    }
-  */
   tft.drawLine(x, y, w, h, color);
   tft.fillCircle(x, y, 2, color);
 }

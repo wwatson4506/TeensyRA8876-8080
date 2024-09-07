@@ -5,6 +5,8 @@
 #include "teensy41.c"
 #include <RA8876_t41_p.h>
 
+// RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
+// src/RA8876_Config_8080.h.
 RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
 
 uint32_t start = 0;
@@ -39,11 +41,11 @@ void setup() {
     waitforInput();
   }
 
-  // Set 8/16bit mode
-  tft.setBusWidth(USE_8080_8_BIT_MODE);
-  // DB5.0 WR pin, RD pin, D0 pin.
-  tft.setFlexIOPins(RA8876_WR,RA8876_RD,RA8876_D0);
-  tft.begin(BUS_SPEED); // 
+  // Set 8/16bit bus mode. Default is 8bit bus mode.
+  tft.setBusWidth(RA8876_8080_BUS_WIDTH); // RA8876_8080_BUS_WIDTH is defined in
+                                          // src/RA8876_Config_8080.h. 
+  tft.begin(BUS_SPEED); // RA8876_8080_BUS_WIDTH is defined in
+                        // src/RA8876_Config_8080.h. Default is 20MHz. 
 
   Serial.printf("%c RA8876 parallel 8080 mode testing (8Bit/16Bit ASYNC/DMA)\n\n",12);
 
@@ -64,7 +66,7 @@ void setup() {
 uint16_t pixel_data[4000];
 
 void loop() {
-#if 1 // ******** Set to 1 for Async testing, set to 0 for DMA testing. *********   
+#if 0 // ******** Set to 1 for Async testing, set to 0 for DMA testing. *********   
   tft.fillScreen(BLUE);
   ASYNC_frame_active = true;
   start = micros();
@@ -94,9 +96,13 @@ void loop() {
   tft.fillScreen(0x0010);
   start = micros();
   DMA_frame_active = true;
+// *********************** DMA not working properly in 16bit bus mode with bus speed greater than 12MHz ************************
+  if(RA8876_8080_BUS_WIDTH == 16) 
+    Serial.printf("**************** DMA not working properly in 16bit bus mode with bus speed greater than 12MHz *******************\n");
+// *****************************************************************************************************************************
   tft.pushPixels16bitDMA(teensy41,1,1,480,320); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
+												// above 12 MHZ. Causes distorted image. SDRAM buffer is ok.
   while(DMA_frame_active) {}; //******** FIXED **********
-                                                // above 12 MHZ. Causes distorted image. SDRAM buffer is ok.
   end = micros() - start;
   Serial.printf("Waiting for DMA transfer to complete took: %dus\n\n",end);
   waitforInput();

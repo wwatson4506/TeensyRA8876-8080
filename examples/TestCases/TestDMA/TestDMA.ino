@@ -4,6 +4,8 @@
 #include "RA8876_Config_8080.h"
 #include <RA8876_t41_p.h>
 
+// RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
+// src/RA8876_Config_8080.h.
 RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
 
 uint32_t start = 0;
@@ -22,11 +24,11 @@ void setup() {
   Serial.begin(115200);
   while (!Serial && millis() < 1000) {} //wait for Serial Monitor
 
-  // Set 8/16bit mode
-  tft.setBusWidth(USE_8080_8_BIT_MODE);
-  // DB5.0 WR pin, RD pin, D0 pin.
-  tft.setFlexIOPins(RA8876_WR,RA8876_RD,RA8876_D0);
-  tft.begin(BUS_SPEED);
+  // Set 8/16bit bus mode. Default is 8bit bus mode.
+  tft.setBusWidth(RA8876_8080_BUS_WIDTH); // RA8876_8080_BUS_WIDTH is defined in
+                                          // src/RA8876_Config_8080.h. 
+  tft.begin(BUS_SPEED); // RA8876_8080_BUS_WIDTH is defined in
+                        // src/RA8876_Config_8080.h. Default is 20MHz. 
 
   Serial.printf("%c TEENSY and RA8876 parallel 8080 mode testing (8Bit/16Bit/DMA/ASYNC)\n\n",12);
 //  Serial.print(CrashReport);
@@ -51,6 +53,11 @@ void loop() {
 //  tft.writeRect(530,0,480,320,flexio_teensy_mm);
 #if defined(ARDUINO_TEENSY_DEVBRD5) || defined(ARDUINO_TEENSY_MICROMOD)
   tft.fillScreen(0x0010);
+
+// *********************** DMA not working properly in 16bit bus mode with bus speed greater than 12MHz ************************
+  if(RA8876_8080_BUS_WIDTH == 16) 
+    Serial.printf("**************** DMA not working properly in 16bit bus mode with bus speed greater than 12MHz *******************\n");
+// *****************************************************************************************************************************
   start = micros();
   tft.pushPixels16bitDMA(teensy41_Cardlike,1,1,575,424); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
                                                          // above 12 MHZ. Causes distorted image. SDRAM buffer is ok.

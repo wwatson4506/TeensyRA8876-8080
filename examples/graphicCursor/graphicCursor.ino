@@ -35,6 +35,8 @@ The button presses automatically cleared on release.
 #include "RA8876_Config_8080.h"
 #include <RA8876_t41_p.h>
 
+// RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
+// src/RA8876_Config_8080.h.
 RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
 
 #define LEFT_MOUSE_BUTTON 1
@@ -224,11 +226,12 @@ void setup() {
   Serial.begin(115200);
   while (!Serial && millis() < 1000) {} //wait for Serial Monitor
 
-  // Set 8/16bit mode
-  tft.setBusWidth(USE_8080_8_BIT_MODE);
-  // DB5.0 WR pin, RD pin, D0 pin.
-  tft.setFlexIOPins(RA8876_WR,RA8876_RD,RA8876_D0);
-  tft.begin(BUS_SPEED); // 
+  // Set 8/16bit bus mode. Default is 8bit bus mode.
+  tft.setBusWidth(RA8876_8080_BUS_WIDTH); // RA8876_8080_BUS_WIDTH is defined in
+                                          // src/RA8876_Config_8080.h. 
+  tft.begin(BUS_SPEED); // RA8876_8080_BUS_WIDTH is defined in
+                        // src/RA8876_Config_8080.h. Default is 20MHz. 
+                        // src/RA8876_Config_8080.h. Default is 20MHz. 
 
   myusb.begin();
   mouse_msg.scaledX = 512;
