@@ -9,7 +9,7 @@
 #define RA8876_8080_BUS_WIDTH 16
 
 // Set the bus speed in megahertz.
-#define BUS_SPEED 12 //Available settings 2,4,8,12,20,24,30,40,60,120
+#define BUS_SPEED 20 //Available settings 2,4,8,12,20,24,30,40,60,120
 
 //External backlight control connected to this Arduino pin
 // Otherwise 3.3v
