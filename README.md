@@ -33,7 +33,7 @@ Use These 8 data lines for 8-bit data bus.
 - D6  06 _______________> 21
 - D7  09 _______________> 22
 *********************************
-Use These 8 data lines for 16-bit data bus.
+Add These 8 data lines for 16-bit data bus.
 - D8  32 _______________> 23  
 - D9  47 _______________> 24
 - D10 48 _______________> 25 
