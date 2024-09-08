@@ -11,7 +11,10 @@ Communication with the Teensy is accomplished using the 8080 parallel mode of Fl
 
 Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI examples folders.
 
+![https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg](https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg)
+
 # PINOUTS
+
 *** CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode***
 
 40 pin dual inline connector pinouts can be found here.
@@ -84,6 +87,6 @@ Add The 8 data lines fores6-bit data bus.
 - BL  3.3V (BACKLITE) ____> 14 or  I/O pin.
 - TFT 5V ________________> 3,4,37,38
 - GND    ________________> 1,2,13,31,39,40
- 
+
 ## NOTE: The T4.1 uses FlexIO2 which does not support DMA. Non-blocking async mode is supported.
 # This is WIP. More to come.
