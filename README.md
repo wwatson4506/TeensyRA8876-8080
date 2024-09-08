@@ -46,14 +46,19 @@ Add These 8 data lines for 16-bit data bus.
 - D14 50 _______________> 29
 - D15 51 _______________> 30
 *********************************
+Control Signals.
 - RD  52 _______________> 05
 - WR  56 _______________> 06
 - CS  11 _______________> 07
 - RS  13 _______________> 08
 - RST 12 _______________> 11
+*********************************
+Power and Grounds
 - BL  3.3V (BACKLITE) ____> 14
 - TFT 5V ________________> 3,4,37,38
 - GND    ________________> 1,2,13,31,39,40
+
+
 
 ### Teensy 4.1 <________> RA8876
 
@@ -79,14 +84,59 @@ Add The 8 data lines fores6-bit data bus.
 - D14 26 _______________> 29
 - D15 27 _______________> 30
 *********************************
+Control Signals.
 - RD  37 _______________> 05
 - WR  36 _______________> 06
 - CS  11 _______________> 07
 - RS  13 _______________> 08
 - RST 12 _______________> 11
 - BL  3.3V (BACKLITE) ____> 14 or  I/O pin.
+*********************************
+Power and Grounds
 - TFT 5V ________________> 3,4,37,38
 - GND    ________________> 1,2,13,31,39,40
 
-## NOTE: The T4.1 uses FlexIO2 which does not support DMA. Non-blocking async mode is supported.
-# This is WIP. More to come.
+NOTE: All power and ground pins should be connected.
+*********************************
+### MINIMAL SKETCH EXAMPLE
+
+```
+// sketch.ino
+
+#include "Arduino.h"
+#include "RA8876_Config_8080.h" // Global config file.
+#include <RA8876_t41_p.h>
+
+// RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
+// src/RA8876_Config_8080.h.
+RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
+
+void setup() {
+  Serial.begin(115200);
+  while (!Serial && millis() < 3000) {} //wait for Serial Monitor (3 seconds).
+
+  // Set 8/16bit bus mode. Default is 8bit bus mode.
+  tft.setBusWidth(RA8876_8080_BUS_WIDTH); // RA8876_8080_BUS_WIDTH is defined in
+                                          // src/RA8876_Config_8080.h. 
+  tft.begin(BUS_SPEED); // RA8876_8080_BUS_WIDTH is defined in
+                        // src/RA8876_Config_8080.h. Default is 20MHz. 
+  ... // Rest of user setup code.
+}
+
+
+void loop() {
+ ... // Users loop code.
+}
+
+```
+
+
+
+## NOTES:
+
+- ###  setBusWidth() if used must be called before begin().
+
+- ### The T4.1 uses FlexIO2 which does not support DMA. Non-blocking async mode is     supported.
+
+
+# This is WIP.   USE AT YOUR OWN RISK.  There are no guarantees when using this library. More to come.
