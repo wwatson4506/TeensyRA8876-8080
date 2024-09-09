@@ -15,7 +15,7 @@ Communication with the Teensy is accomplished using the 8080 parallel mode of Fl
 The capacitive touch controller now used on the ER-TFTM101-1 is the Goodix GT9271. I2C communication is used with te GT9371 controller.
 A minimal driver adapted from the arduino-goodix library can be found here: 
 - https://github.com/wwatson4506/Arduino-goodix-GT9271
-**
+***
 
 # PINOUTS
 
