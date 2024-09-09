@@ -15,6 +15,7 @@
 // Otherwise 3.3v
 //#define BACKLITE 5 or change to your pin choice
 
+// The following are the default defines for the Teensy 4.1 and Dev Board 5 (DB5).
 #if defined(ARDUINO_TEENSY41)
 // Hardware defines T4.1
 #define RA8876_8080_CS 11
