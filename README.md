@@ -4,7 +4,7 @@
 This library is designed to be used with the TeensyRa8876-GFX-Common library and can be found here:
 - https://github.com/wwatson4506/TeensyRA8876-GFX-Common
 
-This driver also uses a new FlexIO library found here:
+This driver also uses an updated FlexIO library found here:
 - https://github.com/KurtE/FlexIO_t4/tree/master
 
 Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO. To install unzip the zip file in the Arduino/libraries folder.
