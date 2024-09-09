@@ -14,7 +14,7 @@
 // The following are the default defines for the Teensy 4.1 and Dev Board 5 (DB5).
 // External backlight control connected to this Arduino pin. Can be controlled with PWM.
 // Otherwise 3.3v
-// Un-comment this define for pin control of backlite/
+// Un-comment this define for pin control of backlite.
 //#define BACKLITE 5 or change to your pin choice.
 
 // The following are the default defines for the Teensy 4.1 and Dev Board 5 (DB5).
