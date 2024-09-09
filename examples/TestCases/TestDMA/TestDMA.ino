@@ -62,7 +62,7 @@ void loop() {
   tft.pushPixels16bitDMA(teensy41_Cardlike,1,1,575,424); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
                                                          // above 12 MHZ. Causes distorted image. SDRAM buffer is ok.
   end = micros() - start;
-  Serial.printf("Wrote %d bytes in %dss\n\n",575*424, end);
+  Serial.printf("Wrote %d bytes in %dus\n\n",575*424, end);
   waitforInput();
   tft.fillScreen(0x0010);
   start = micros();
