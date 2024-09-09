@@ -16,13 +16,10 @@ The capacitive touch controller now used on the ER-TFTM101-1 is the Goodix GT927
 A minimal driver adapted from the arduino-goodix library can be found here: 
 - https://github.com/wwatson4506/Arduino-goodix-GT9271
 ***
-
 # PINOUTS
 
 ### CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode
-
 40 pin dual inline connector pinouts for 8080 8/16Bit parallel buss mode can be found here.
-
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
 
 ### Teensy 4.1 <--------------> RA8876
@@ -38,8 +35,7 @@ Use These 8 data lines for 8-bit data bus.
 - D5  41 --------------------> 20
 - D6  17 --------------------> 21
 - D7  16 --------------------> 22
-*********************************
-Add The 8 data lines fores6-bit data bus.
+Add The 8 data lines for 16-bit data bus.
 - D8  22 --------------------> 23 
 - D9  23 --------------------> 24
 - D10 20 --------------------> 25
@@ -48,7 +44,6 @@ Add The 8 data lines fores6-bit data bus.
 - D13 39 --------------------> 28
 - D14 26 --------------------> 29
 - D15 27 --------------------> 30
-*********************************
 Control Signals.
 - RD  37 --------------------> 05
 - WR  36 --------------------> 06
@@ -56,12 +51,10 @@ Control Signals.
 - RS  13 --------------------> 08
 - RST 12 --------------------> 11
 - BL  3.3V (BACKLITE) -------> 14 or  I/O pin.
-*********************************
 Power and Grounds
 - TFT 5V --------------------> 3,4,37,38
 - GND -----------------------> 1,2,13,31,39,40
 NOTE: All power and ground pins should be connected.
-*********************************
 Touch Screen (ER_TFTM101-1 40 pin duel inline connector)
   GT9371                   Teeensy 4.1
 - CPT_/RST 36 ---------------> 3.3V
@@ -70,6 +63,7 @@ Touch Screen (ER_TFTM101-1 40 pin duel inline connector)
 - CPT_SCL  35 ---------------> 24
 
 ```
+***
 ### Dev Board 5                 RA8876
 
    PIN                                                         PIN
@@ -83,7 +77,6 @@ Use These 8 data lines for 8-bit data bus.
 - D5  45 <-------------------> 20
 - D6  06 <-------------------> 21
 - D7  09 <-------------------> 22
-*********************************
 Add These 8 data lines for 16-bit data bus.
 - D8  32 <-------------------> 23  
 - D9  47 <-------------------> 24
@@ -93,14 +86,12 @@ Add These 8 data lines for 16-bit data bus.
 - D13 07 <-------------------> 28
 - D14 50 <-------------------> 29
 - D15 51 <-------------------> 30
-*********************************
 Control Signals.
 - RD  52 --------------------> 05
 - WR  56 --------------------> 06
 - CS  11 --------------------> 07
 - RS  13 --------------------> 08
 - RST 12 --------------------> 11
-*********************************
 Power and Grounds
 - BL  3.3V (BACKLITE) -------> 14
 - TFT 5V --------------------> 3,4,37,38
@@ -108,7 +99,7 @@ Power and Grounds
 NOTE: All power and ground pins should be connected.
       I2C Capacitive Touch screen not tested yet on this device.
 ```
-
+***
 ### CONFIG FILE
 Both 8080 Parallel and SPI libraries have config file.
 Config file for FlexIO 8080 parallel:
