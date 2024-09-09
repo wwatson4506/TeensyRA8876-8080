@@ -22,82 +22,81 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
 
 ## WIRED
-### Dev Board 5 <_______> RA8876
+### Dev Board 5                 RA8876
 
-      PIN                     PIN
-*********************************
+   PIN                                                         PIN
+```
 Use These 8 data lines for 8-bit data bus.
-- D0  40 _______________> 15 
-- D1  41 _______________> 16
-- D2  42 _______________> 17 
-- D3  43 _______________> 18 
-- D4  44 _______________> 19
-- D5  45 _______________> 20
-- D6  06 _______________> 21
-- D7  09 _______________> 22
+- D0  40 <-------------------> 15 
+- D1  41 <-------------------> 16
+- D2  42 <-------------------> 17 
+- D3  43 <-------------------> 18 
+- D4  44 <-------------------> 19
+- D5  45 <-------------------> 20
+- D6  06 <-------------------> 21
+- D7  09 <-------------------> 22
 *********************************
 Add These 8 data lines for 16-bit data bus.
-- D8  32 _______________> 23  
-- D9  47 _______________> 24
-- D10 48 _______________> 25 
-- D11 49 _______________> 26 
-- D12 08 _______________> 27
-- D13 07 _______________> 28
-- D14 50 _______________> 29
-- D15 51 _______________> 30
+- D8  32 <-------------------> 23  
+- D9  47 <-------------------> 24
+- D10 48 <-------------------> 25 
+- D11 49 <-------------------> 26 
+- D12 08 <-------------------> 27
+- D13 07 <-------------------> 28
+- D14 50 <-------------------> 29
+- D15 51 <-------------------> 30
 *********************************
 Control Signals.
-- RD  52 _______________> 05
-- WR  56 _______________> 06
-- CS  11 _______________> 07
-- RS  13 _______________> 08
-- RST 12 _______________> 11
+- RD  52 --------------------> 05
+- WR  56 --------------------> 06
+- CS  11 --------------------> 07
+- RS  13 --------------------> 08
+- RST 12 --------------------> 11
 *********************************
 Power and Grounds
-- BL  3.3V (BACKLITE) ____> 14
-- TFT 5V ________________> 3,4,37,38
-- GND    ________________> 1,2,13,31,39,40
+- BL  3.3V (BACKLITE) -------> 14
+- TFT 5V --------------------> 3,4,37,38
+- GND -----------------------> 1,2,13,31,39,40
+```
 
 
+### Teensy 4.1 <--------------> RA8876
 
-### Teensy 4.1 <________> RA8876
-
-      PIN                     PIN
-*********************************
+   PIN                                                         PIN
+```
 Use These 8 data lines for 8-bit data bus.
-- D0  19 _______________> 15
-- D1  18 _______________> 16
-- D2  14 _______________> 17
-- D3  15 _______________> 18
-- D4  40 _______________> 19
-- D5  41 _______________> 20
-- D6  17 _______________> 21
-- D7  16 _______________> 22
+- D0  19 --------------------> 15
+- D1  18 --------------------> 16
+- D2  14 --------------------> 17
+- D3  15 --------------------> 18
+- D4  40 --------------------> 19
+- D5  41 --------------------> 20
+- D6  17 --------------------> 21
+- D7  16 --------------------> 22
 *********************************
 Add The 8 data lines fores6-bit data bus.
-- D8  22 _______________> 23 
-- D9  23 _______________> 24
-- D10 20 _______________> 25
-- D11 21 _______________> 26
-- D12 38 _______________> 27
-- D13 39 _______________> 28
-- D14 26 _______________> 29
-- D15 27 _______________> 30
+- D8  22 --------------------> 23 
+- D9  23 --------------------> 24
+- D10 20 --------------------> 25
+- D11 21 --------------------> 26
+- D12 38 --------------------> 27
+- D13 39 --------------------> 28
+- D14 26 --------------------> 29
+- D15 27 --------------------> 30
 *********************************
 Control Signals.
-- RD  37 _______________> 05
-- WR  36 _______________> 06
-- CS  11 _______________> 07
-- RS  13 _______________> 08
-- RST 12 _______________> 11
-- BL  3.3V (BACKLITE) ____> 14 or  I/O pin.
+- RD  37 --------------------> 05
+- WR  36 --------------------> 06
+- CS  11 --------------------> 07
+- RS  13 --------------------> 08
+- RST 12 --------------------> 11
+- BL  3.3V (BACKLITE) -------> 14 or  I/O pin.
 *********************************
 Power and Grounds
-- TFT 5V ________________> 3,4,37,38
-- GND    ________________> 1,2,13,31,39,40
-
+- TFT 5V --------------------> 3,4,37,38
+- GND -----------------------> 1,2,13,31,39,40
 NOTE: All power and ground pins should be connected.
-*********************************
+```
 ### MINIMAL SKETCH EXAMPLE
 
 ```
@@ -138,9 +137,12 @@ void loop() {
 
 - ### The T4.1 uses FlexIO2 which does not support DMA. Non-blocking async mode is     supported.
 
+- ### There is still an issue with DMA being used with a buss speed greater than 12MHz.
+
 
 
 ## Examples Folder Listings:
+
 - gauges  ---------------------->  A Sumotoy example originally created for the RA8875.
 - graphicCursor ------------->  A demonstration of defining and using a graphical mouse pointer. A USB mouse is required. Also demonstrates single and double mouse button clicks.
 - graphics --------------------->  Demonstrates common graphics usage, lines, circles, rectangles and more.
@@ -150,7 +152,7 @@ void loop() {
 - RA8876_pictureEmbed --> Displays 16Bit color images. Also demonstrates rotation.
 - RA8876Rotate --------------> Also demontrates use of rotation.
 - scroll ---------------------------> Simple demonstration of scrolliing screen up and down.
-- TestCases -----------------------------> Folder containing varios sketches used for testing.
+- TestCases -----------------------------> Folder containing various sketches used for testing.
   - DMA_ASYNC_testing ---------> Tests usage of DMA and ASYNC together.
   - DMA_Testing_2 ----------------> More DMA tests using SDRAM on the Dev Board 5. Not compatible with  Teensy 4.0, 4.0 or MicroMod.
   - Kurts_RA8876_p_FB_and_clip_tests --> Frame buffer and clip tests.
@@ -159,7 +161,7 @@ void loop() {
   - TestDMA_FB --------------------> More ASYNC and DMA testing using frame buffer callbacks.
   - writeRotatedRect_ra8876 --> Displays images and color bars with rotation.
 - treedee -------------------------------> Demonstrates a spinning 3D wire cube.
-- UserDefinedFonts ----------------> Demonstrates loading  user define fonts into pattern ram. Can also be loaded from an SD card or USB drive.
+- UserDefinedFonts ----------------> Demonstrates loading  user define fonts into pattern ram.   Fonts can also be loaded from an SD card or USB drive.
 
 
 
