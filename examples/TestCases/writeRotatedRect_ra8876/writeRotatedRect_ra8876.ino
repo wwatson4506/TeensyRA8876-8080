@@ -1,5 +1,5 @@
 // Set which Display we are using and at what speed
-// Currently I have options for both MICROMOD and T41 to make it
+// Currently I have options for MICROMOD, T41 and DB5 to make it
 // easier for testing
 
 #include "Arduino.h"
