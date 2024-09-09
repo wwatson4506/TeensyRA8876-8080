@@ -9,8 +9,6 @@ This driver also uses a new FlexIO library found here:
 
 Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO. To install unzip the zip file in the Arduino/libraries folder.
 
-Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI examples folders.
-
 ![https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg](https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg)
 
 # PINOUTS
@@ -142,6 +140,7 @@ void loop() {
 
 
 ## Examples Folder Listings:
+Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI examples folders.
 
 - gauges  ---------------------->  A Sumotoy example originally created for the RA8875.
 - graphicCursor ------------->  A demonstration of defining and using a graphical mouse pointer. A USB mouse is required. Also demonstrates single and double mouse button clicks.
