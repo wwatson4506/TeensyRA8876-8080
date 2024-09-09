@@ -16,6 +16,7 @@ The capacitive touch controller now used on the ER-TFTM101-1 is the Goodix GT927
 A minimal driver adapted from the arduino-goodix library can be found here: 
 - https://github.com/wwatson4506/Arduino-goodix-GT9271
 
+***************************************************************
 # PINOUTS
 
 ### CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode
