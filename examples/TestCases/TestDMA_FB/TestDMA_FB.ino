@@ -1,9 +1,12 @@
 #include "RA8876_Config_8080.h"
-#include <MemoryHexDump.h>
+//#include <MemoryHexDump.h>
 #include "Teensy41_Cardlike.h"
 #include "flexio_teensy_mm.c"
 #include "teensy41.c"
 #include <RA8876_t41_p.h>
+
+// Uncomment for ASYNC testing instead of DMA.
+// #define ASYNC 1
 
 // RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
 // src/RA8876_Config_8080.h.
@@ -66,7 +69,7 @@ void setup() {
 uint16_t pixel_data[4000];
 
 void loop() {
-#if 0 // ******** Set to 1 for Async testing, set to 0 for DMA testing. *********   
+#ifdef ASYNC 
   tft.fillScreen(BLUE);
   ASYNC_frame_active = true;
   start = micros();
