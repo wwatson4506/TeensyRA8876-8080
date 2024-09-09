@@ -19,7 +19,7 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 
 40 pin dual inline connector pinouts can be found here:
 
-https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_RTP_Interfacing.pdf
+https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
 
 ## WIRED
 ### Dev Board 5 <_______> RA8876
