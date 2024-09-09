@@ -3,7 +3,6 @@
 #include "Arduino.h"
 #include "RA8876_Config_8080.h"
 #include <RA8876_t41_p.h>
-#include <math.h>
 #include "font8x16.h"
 
 // RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
