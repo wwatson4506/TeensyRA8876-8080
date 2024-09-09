@@ -55,7 +55,7 @@ Power and Grounds
 - TFT 5V --------------------> 3,4,37,38
 - GND -----------------------> 1,2,13,31,39,40
 NOTE: All power and ground pins should be connected.
-Touch Screen (ER_TFTM101-1 40 pin duel inline connector)
+Touch Screen (ER_TFTM101-1 40 pin dual inline connector)
   GT9371                   Teeensy 4.1
 - CPT_/RST 36 ---------------> 3.3V
 - CPT_INT  33 ---------------> 28
