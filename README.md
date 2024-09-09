@@ -4,7 +4,7 @@
 This library is designed to be used with the TeensyRa8876-GFX-Common library and can be found here:
 - https://github.com/wwatson4506/TeensyRA8876-GFX-Common
 
-This driver also uses an updated FlexIO library found here:
+This driver also uses a new FlexIO library found here:
 - https://github.com/KurtE/FlexIO_t4/tree/master
 
 Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO. To install unzip the zip file in the Arduino/libraries folder.
@@ -18,45 +18,6 @@ Communication with the Teensy is accomplished using the 8080 parallel mode of Fl
 40 pin dual inline connector pinouts can be found here.
 
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
-
-## WIRED
-### Dev Board 5                 RA8876
-
-   PIN                                                         PIN
-```
-Use These 8 data lines for 8-bit data bus.
-- D0  40 <-------------------> 15 
-- D1  41 <-------------------> 16
-- D2  42 <-------------------> 17 
-- D3  43 <-------------------> 18 
-- D4  44 <-------------------> 19
-- D5  45 <-------------------> 20
-- D6  06 <-------------------> 21
-- D7  09 <-------------------> 22
-*********************************
-Add These 8 data lines for 16-bit data bus.
-- D8  32 <-------------------> 23  
-- D9  47 <-------------------> 24
-- D10 48 <-------------------> 25 
-- D11 49 <-------------------> 26 
-- D12 08 <-------------------> 27
-- D13 07 <-------------------> 28
-- D14 50 <-------------------> 29
-- D15 51 <-------------------> 30
-*********************************
-Control Signals.
-- RD  52 --------------------> 05
-- WR  56 --------------------> 06
-- CS  11 --------------------> 07
-- RS  13 --------------------> 08
-- RST 12 --------------------> 11
-*********************************
-Power and Grounds
-- BL  3.3V (BACKLITE) -------> 14
-- TFT 5V --------------------> 3,4,37,38
-- GND -----------------------> 1,2,13,31,39,40
-```
-
 
 ### Teensy 4.1 <--------------> RA8876
 
@@ -95,8 +56,96 @@ Power and Grounds
 - GND -----------------------> 1,2,13,31,39,40
 NOTE: All power and ground pins should be connected.
 ```
-### MINIMAL SKETCH EXAMPLE
+### Dev Board 5                 RA8876
 
+   PIN                                                         PIN
+```
+Use These 8 data lines for 8-bit data bus.
+- D0  40 <-------------------> 15 
+- D1  41 <-------------------> 16
+- D2  42 <-------------------> 17 
+- D3  43 <-------------------> 18 
+- D4  44 <-------------------> 19
+- D5  45 <-------------------> 20
+- D6  06 <-------------------> 21
+- D7  09 <-------------------> 22
+*********************************
+Add These 8 data lines for 16-bit data bus.
+- D8  32 <-------------------> 23  
+- D9  47 <-------------------> 24
+- D10 48 <-------------------> 25 
+- D11 49 <-------------------> 26 
+- D12 08 <-------------------> 27
+- D13 07 <-------------------> 28
+- D14 50 <-------------------> 29
+- D15 51 <-------------------> 30
+*********************************
+Control Signals.
+- RD  52 --------------------> 05
+- WR  56 --------------------> 06
+- CS  11 --------------------> 07
+- RS  13 --------------------> 08
+- RST 12 --------------------> 11
+*********************************
+Power and Grounds
+- BL  3.3V (BACKLITE) -------> 14
+- TFT 5V --------------------> 3,4,37,38
+- GND -----------------------> 1,2,13,31,39,40
+NOTE: All power and ground pins should be connected.
+```
+
+### CONFIG FILE
+Both 8080 Parallel and SPI libraries have config file.
+Config file for FlexIO 8080 parallel:
+```
+/* RA8876_Config.h
+ A file to place user defines and configs.
+*/
+
+#ifndef RA8876_CONFIG_H
+#define RA8876_CONFIG_H
+
+// Select 8 or 16 for your bus width.
+#define RA8876_8080_BUS_WIDTH 8
+
+// Set the bus speed in megahertz. 
+#define BUS_SPEED 20 //Available settings 2,4,8,12,20,24,30,40,60,120
+
+// The following are the default defines for the Teensy 4.1 and Dev Board 5 (DB5).
+// External backlight control connected to this Arduino pin. Can be controlled with PWM.
+// Otherwise 3.3v
+// Un-comment this define for pin control of backlite.
+//#define BACKLITE 5 or change to your pin choice
+
+#if defined(ARDUINO_TEENSY41)
+// Hardware defines T4.1
+#define RA8876_8080_CS 11
+#define RA8876_8080_DC 13
+#define RA8876_8080_RESET 12
+// Example usage in sketch: RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
+
+#define RA8876_D0 19
+#define RA8876_RD 37    // FlexIO3:19: RD
+#define RA8876_WR 36    // FlexIO3:18: WR
+
+#elif defined(ARDUINO_TEENSY_DEVBRD5)
+// Hardware defines DB5 board and Kurt's shield
+#define RA8876_8080_CS 53
+#define RA8876_8080_RESET 54
+#define RA8876_8080_DC 55
+#define RA8876_D0 40
+#define BACKLITE 29
+#define RA8876_RD 52    // FlexIO3:10: RD
+#define RA8876_WR 56    // FlexIO3:11 WR
+#endif
+
+// Uncomment to use FT5206 touch. (Not used on the ER-TFTM1010-1)
+#define USE_FT5206_TOUCH 
+
+#endif // RA8876_CONFIG_H
+```
+
+### MINIMAL SKETCH EXAMPLE
 ```
 // sketch.ino
 
@@ -112,7 +161,7 @@ void setup() {
   Serial.begin(115200);
   while (!Serial && millis() < 3000) {} //wait for Serial Monitor (3 seconds).
 
-  // Set 8/16bit bus mode. Default is 8bit bus mode.
+  // Set 8/16bit bus mode. Default is 8bit bus mode. Must be called before tft.begin(BUS_SPEED).
   tft.setBusWidth(RA8876_8080_BUS_WIDTH); // RA8876_8080_BUS_WIDTH is defined in
                                           // src/RA8876_Config_8080.h. 
   tft.begin(BUS_SPEED); // RA8876_8080_BUS_WIDTH is defined in
