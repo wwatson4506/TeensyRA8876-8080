@@ -17,7 +17,7 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 
 ### CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode
 
-40 pin dual inline connector pinouts can be found here:
+40 pin dual inline connector pinouts can be found here.
 
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
 
@@ -137,6 +137,30 @@ void loop() {
 - ###  setBusWidth() if used must be called before begin().
 
 - ### The T4.1 uses FlexIO2 which does not support DMA. Non-blocking async mode is     supported.
+
+
+
+## Examples Folder Listings:
+- gauges  ---------------------->  A Sumotoy example originally created for the RA8875.
+- graphicCursor ------------->  A demonstration of defining and using a graphical mouse pointer. A USB mouse is required. Also demonstrates single and double mouse button clicks.
+- graphics --------------------->  Demonstrates common graphics usage, lines, circles, rectangles and more.
+- ILI_ADA_FontTest4 -------> Demonstrates usage of ILI9341 and Adafruit fonts on the RA8876.
+- MemoryTransfer -------- -> Shows usage of many BTE (Block Transfer Engine) functions.
+- pipTest ------------------------> Example of PIP (Picture In Picture) usage.
+- RA8876_pictureEmbed --> Displays 16Bit color images. Also demonstrates rotation.
+- RA8876Rotate --------------> Also demontrates use of rotation.
+- scroll ---------------------------> Simple demonstration of scrolliing screen up and down.
+- TestCases -----------------------------> Folder containing varios sketches used for testing.
+  - DMA_ASYNC_testing ---------> Tests usage of DMA and ASYNC together.
+  - DMA_Testing_2 ----------------> More DMA tests using SDRAM on the Dev Board 5. Not compatible with  Teensy 4.0, 4.0 or MicroMod.
+  - Kurts_RA8876_p_FB_and_clip_tests --> Frame buffer and clip tests.
+  - RA8876p_readPixels ---------> Tests color bar write and read accuracy with rotation.
+  - TestDMA -------------------------> Another DMA test for displaying images.
+  - TestDMA_FB --------------------> More ASYNC and DMA testing using frame buffer callbacks.
+  - writeRotatedRect_ra8876 --> Displays images and color bars with rotation.
+- treedee -------------------------------> Demonstrates a spinning 3D wire cube.
+- UserDefinedFonts ----------------> Demonstrates loading  user define fonts into pattern ram. Can also be loaded from an SD card or USB drive.
+
 
 
 # This is WIP.   USE AT YOUR OWN RISK.  There are no guarantees when using this library. More to come.
