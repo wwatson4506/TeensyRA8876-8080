@@ -25,7 +25,7 @@ https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
 ### Teensy 4.1 <--------------> RA8876
 
 ```
-   PIN                                                         PIN
+   PIN                         PIN
 Use These 8 data lines for 8-bit data bus.
 - D0  19 --------------------> 15
 - D1  18 --------------------> 16
@@ -67,7 +67,7 @@ Touch Screen (ER_TFTM101-1 40 pin dual inline connector)
 ### Dev Board 5                 RA8876
 
 ```
-   PIN                                                         PIN
+   PIN                         PIN
 
 Use These 8 data lines for 8-bit data bus.
 - D0  40 <-------------------> 15 
