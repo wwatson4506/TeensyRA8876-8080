@@ -23,7 +23,7 @@
 #define RA8876_8080_CS 11
 #define RA8876_8080_DC 13
 #define RA8876_8080_RESET 12
-// Usage in sketch: RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
+// Example usage in sketch: RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
 
 #define RA8876_D0 19
 #define RA8876_RD 37    // FlexIO3:19: RD
