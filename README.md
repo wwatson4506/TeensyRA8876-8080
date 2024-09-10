@@ -22,7 +22,7 @@ A minimal driver adapted from the arduino-goodix library can be found here:
 ***
 # PINOUTS
 
-### CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode
+### CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode:
 40 pin dual inline connector pinouts for 8080 8/16Bit parallel buss mode can be found here.
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
 
