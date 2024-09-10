@@ -7,7 +7,7 @@ This library is designed to be used with the TeensyRa8876-GFX-Common library and
 This driver also uses a new FlexIO library found here:
 - https://github.com/KurtE/FlexIO_t4/tree/master
 
-Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO. To install unzip the zip file in the Arduino/libraries folder.
+Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO.
 
 ![https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg](https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg)
 
@@ -15,6 +15,10 @@ Communication with the Teensy is accomplished using the 8080 parallel mode of Fl
 The capacitive touch controller now used on the ER-TFTM101-1 is the Goodix GT9271. I2C communication is used with the GT9371 controller.
 A minimal driver adapted from the arduino-goodix library can be found here: 
 - https://github.com/wwatson4506/Arduino-goodix-GT9271
+***
+## INSTALLATION
+1. Unzip this library to the **Arduino/libraries** folder.
+2. Unzip **TeensyRA8876-GFX-Common**  library to the **Arduino/libraries** folder.
 ***
 # PINOUTS
 
