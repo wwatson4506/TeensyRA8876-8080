@@ -212,7 +212,7 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 - graphicCursor ------------->  A demonstration of defining and using a graphical mouse pointer. A USB mouse is required. Also demonstrates single and double mouse button clicks.
 - graphics --------------------->  Demonstrates common graphics usage, lines, circles, rectangles and more.
 - ILI_ADA_FontTest4 -------> Demonstrates usage of ILI9341 and Adafruit fonts on the RA8876.
-- MemoryTransfer -------- -> Shows usage of many BTE (Block Transfer Engine) functions.
+- MemoryTransfer -----------> Shows usage of many BTE (Block Transfer Engine) functions.
 - pipTest ------------------------> Example of PIP (Picture In Picture) usage.
 - RA8876_pictureEmbed --> Displays 16Bit color images. Also demonstrates rotation.
 - RA8876Rotate --------------> Also demontrates use of rotation.
