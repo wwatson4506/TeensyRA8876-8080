@@ -63,7 +63,7 @@ Power and Grounds
 NOTE: All power and ground pins should be connected.
 
 Touch Screen (ER_TFTM101-1 40 pin dual inline connector)
-  Teensy 4.1            GT9371
+Teensy 4.1               GT9371
 - 3.3V ---------------> CPT_/RST 36
 - 28   ---------------> CPT_INT  33
 - 25   ---------------> CPT_SDA  34
