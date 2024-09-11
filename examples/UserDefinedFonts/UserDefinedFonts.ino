@@ -4,13 +4,15 @@
 #include "RA8876_Config_8080.h"
 #include <RA8876_t41_p.h>
 #include "font8x16.h"
+#include "flexio_teensy_mm.c"
+#include "teensy41.c"
 
 // RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
 // src/RA8876_Config_8080.h.
 RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
 
 // Array of Simple RA8876 Basic Colors
-PROGMEM uint16_t myColors[] = {
+const uint16_t myColors[] = {
 	0x0000,	0xffff,	0xf800,	0xfc10,	0x8000,	0x07e0,	0x87f0,	0x0400,
 	0x001f,	0x051f,	0x841f,	0x0010,	0xffe0,	0xfff0,	0x8400,	0x07ff,
 	0x87ff,	0x0410,	0xf81f,	0xfc1f,	0x8010,	0xA145
@@ -35,6 +37,9 @@ void setup() {
   tft.begin(BUS_SPEED); // RA8876_8080_BUS_WIDTH is defined in
                         // src/RA8876_Config_8080.h. Default is 20MHz. 
 
+  tft.graphicMode(true);
+  tft.setRotation(0);
+
   tft.fontLoadMEM((char *)font8x16);
   tft.setFontSize(1,false);
   tft.setCursor(0,0);
@@ -49,12 +54,14 @@ void setup() {
   tft.setFontSize(1,true); // Set to 1X font scale.
   tft.printf("Hello Teensy!, font scaling = 1\n"); 
   tft.setFontSize(2,true); // Set to 2X font scale.
-  tft.printf("Hello Teensy!, font scaling = 2\n\n"); 
+  tft.printf("Hello Teensy!, font scaling = 2\n"); 
   tft.setFontSize(1,true); // Set to smallest font scale.
   tft.setTextColor(myColors[6] , myColors[0]);
   // Send raw characters to screen. Does not process ASCII control codes.
   for(uint8_t i = 0; i < 255; i++)
     tft.rawPrint(i);
+  tft.writeRect(5,250,480,320,teensy41); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
+  tft.writeRect(535,250,480,320,flexio_teensy_mm); // FLASHMEM buffer. 16-Bit bus width fails with bus speed
 }
 
 void loop() {
