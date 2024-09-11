@@ -231,7 +231,9 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 ***
 # CREDITS
 Major work on this library was done by the following PJRC forum members:
+
 @mjs513, @KurtE, @MorganS, @rezo and @K7MDL (Keith).
+
 They added functions to be compatible with other display libraries, performed a major rework and helped in debugging the code. The 8080 parallel FlexIO driver is based on work done by @rezo.
 
 ***
