@@ -7,7 +7,7 @@ This library is designed to be used with the TeensyRa8876-GFX-Common library and
 This driver also uses a new FlexIO library found here:
 - https://github.com/KurtE/FlexIO_t4/tree/master
 
-Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO.
+Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO. 
 
 ![https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg](https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg)
 
@@ -16,10 +16,12 @@ The capacitive touch controller now used on the ER-TFTM101-1 is the Goodix GT927
 A minimal driver adapted from the arduino-goodix library can be found here: 
 - https://github.com/wwatson4506/Arduino-goodix-GT9271
 ***
+
 ## LIBRARY INSTALLATION
 1. Unzip this library to the **Arduino/libraries** folder.
 2. Unzip **TeensyRA8876-GFX-Common**  library to the **Arduino/libraries** folder.
 ***
+
 # PINOUTS
 
 ### CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode:
@@ -27,9 +29,9 @@ A minimal driver adapted from the arduino-goodix library can be found here:
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
 
 ### Teensy 4.1 <--------------> RA8876
-
 ```
       PIN                      PIN
+
 Use These 8 data lines for 8-bit data bus.
 - D0  19 --------------------> 15
 - D1  18 --------------------> 16
@@ -59,13 +61,13 @@ Power and Grounds
 - TFT 5V --------------------> 3,4,37,38
 - GND -----------------------> 1,2,13,31,39,40
 NOTE: All power and ground pins should be connected.
-Touch Screen (ER_TFTM101-1 40 pin dual inline connector)
-  GT9371                   Teensy 4.1
-- CPT_/RST 36 ---------------> 3.3V
-- CPT_INT  33 ---------------> 28
-- CPT_SDA  34 ---------------> 25
-- CPT_SCL  35 ---------------> 24
 
+Touch Screen (ER_TFTM101-1 40 pin dual inline connector)
+  Teensy 4.1            GT9371
+- 3.3V ---------------> CPT_/RST 36
+- 28   ---------------> CPT_INT  33
+- 25   ---------------> CPT_SDA  34
+- 24   ---------------> CPT_SCL  35
 ```
 ***
 ### Dev Board 5                 RA8876
@@ -125,8 +127,9 @@ Config file for FlexIO 8080 parallel:
 // The following are the default defines for the Teensy 4.1 and Dev Board 5 (DB5).
 // External backlight control connected to this Arduino pin. Can be controlled with PWM.
 // Otherwise 3.3v
-// Un-comment this define for pin control of backlite.
-//#define BACKLITE 5 or change to your pin choice
+// Un-comment one of these defines for pin control of backlite.
+//#define BACKLITE 5 or change to your pin choice.
+//#define BACKLITE 29 // Kurt's DB5 shield.
 
 #if defined(ARDUINO_TEENSY41)
 // Hardware defines T4.1
@@ -180,14 +183,13 @@ void setup() {
   ... // Rest of user setup code.
 }
 
-
 void loop() {
  ... // Users loop code.
 }
 
 ```
 
-
+***
 
 ## NOTES:
 
@@ -197,9 +199,12 @@ void loop() {
 
 - ### There is still an issue with DMA being used with a buss speed greater than 12MHz.
 
+***
+
 
 
 ## Examples Folder Listings:
+
 Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI examples folders.
 
 - gauges  ---------------------->  A Sumotoy example originally created for the RA8875.
@@ -222,6 +227,5 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 - treedee -------------------------------> Demonstrates a spinning 3D wire cube.
 - UserDefinedFonts ----------------> Demonstrates loading  user define fonts into pattern ram.   Fonts can also be loaded from an SD card or USB drive.
 
-
-
+***
 # This is WIP.   USE AT YOUR OWN RISK.  There are no guarantees when using this library. More to come.
