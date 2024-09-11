@@ -225,8 +225,8 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
   - TestDMA -------------------------> Another DMA test for displaying images.
   - TestDMA_FB --------------------> More ASYNC and DMA testing using frame buffer callbacks.
   - writeRotatedRect_ra8876 ----> Displays images and color bars with rotation.
-- treedee ----------------------> Demonstrates a spinning 3D wire cube.
-- UserDefinedFonts -------------> Demonstrates loading  user define fonts into pattern ram.   Fonts can also be loaded from an SD card or USB drive.
+- treedee -----------------------> Demonstrates a spinning 3D wire cube.
+- UserDefinedFonts -----------> Demonstrates loading  user define fonts into pattern ram.   Fonts can also be loaded from an SD card or USB drive.
 
 ***
 # CREDITS
