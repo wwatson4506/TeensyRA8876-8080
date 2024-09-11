@@ -217,7 +217,7 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 - RA8876_pictureEmbed --> Displays 16Bit color images. Also demonstrates rotation.
 - RA8876Rotate --------------> Also demontrates use of rotation.
 - scroll ---------------------------> Simple demonstration of scrolliing screen up and down.
-- TestCases -----------------------------> Folder containing various sketches used for testing.
+- TestCases ----------------------> Folder containing various sketches used for testing.
   - DMA_ASYNC_testing ---------> Tests usage of DMA and ASYNC together.
   - DMA_Testing_2 ----------------> More DMA tests using SDRAM on the Dev Board 5. Not compatible with  Teensy 4.0, 4.0 or MicroMod.
   - Kurts_RA8876_p_FB_and_clip_tests --> Frame buffer and clip tests.
