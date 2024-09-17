@@ -750,7 +750,7 @@ FASTRUN void RA8876_t41_p::MulBeatWR_nPrm_IRQ(const void *value, uint32_t const 
         _irq_bursts_to_complete++;
     }
 
-    _irq_bytes_remaining = bytes+32; // Need to add 32 to get remaining burst.
+    _irq_bytes_remaining = bytes; // +32; // Need to add 32 to get remaining burst?
     _irq_readPtr = (uint32_t *)value;
         //Serial.printf ("arg addr: %x, _irq_readPtr addr: %x, contents: %x\n", value, _irq_readPtr, *_irq_readPtr);
         //Serial.printf("START::_irq_bursts_to_complete: %d _irq_bytes_remaining: %d \n", _irq_bursts_to_complete, _irq_bytes_remaining);
