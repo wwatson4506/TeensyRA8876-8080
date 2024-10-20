@@ -20,6 +20,7 @@ A minimal driver adapted from the arduino-goodix library can be found here:
 ## LIBRARY INSTALLATION
 1. Unzip this library to the **Arduino/libraries** folder.
 2. Unzip **TeensyRA8876-GFX-Common**  library to the **Arduino/libraries** folder.
+3. Download **ILI9341_fonts** [https://github.com/wwatson4506/ILI9341_fonts](https://github.com/wwatson4506/ILI9341_fonts) and install into the **Arduino/libraries** folder.
 ***
 
 # PINOUTS
