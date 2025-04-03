@@ -112,6 +112,8 @@ NOTE: All power and ground pins should be connected.
 ```
 ***
 ### CONFIG FILE
+UPDATE: A little over 200ms performance improvement can be had by defining "USE_FAST_CLOCK_MODE" in the config file shown below.
+
 Both 8080 Parallel and SPI libraries have config file.
 Config file for FlexIO 8080 parallel:
 ```
