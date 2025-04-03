@@ -69,7 +69,7 @@ typedef uint32_t	ru32;
 
 #ifdef USE_FAST_CLOCK_MODE
 #define OSC_FREQ	10  // OSC clock frequency, unit: MHz.
-#define DRAM_FREQ	166 // 120 // SDRAM clock frequency, unit: MHz. RA8876
+#define DRAM_FREQ	160 // 120 // SDRAM clock frequency, unit: MHz. RA8876
 #define CORE_FREQ	130 // 120 // Core (system) clock frequency, unit: MHz. 
 #define SCAN_FREQ	35  // 50  // Panel Scan clock frequency, unit: MHz.
 #else // Normal clock mode.
