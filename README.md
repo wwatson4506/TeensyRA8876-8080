@@ -1,6 +1,8 @@
 # TeensyRA8876-8080
 ## A RA8876 8080 parallel driver library for Teensy boards and variants.
 
+### NEW SPEED IMPROVEMENT!!
+
 This library is designed to be used with the TeensyRa8876-GFX-Common library and can be found here:
 - https://github.com/wwatson4506/TeensyRA8876-GFX-Common
 
@@ -119,9 +121,11 @@ Config file for FlexIO 8080 parallel:
 
 #ifndef RA8876_CONFIG_H
 #define RA8876_CONFIG_H
-## NEW!!
+
+//********************* NEW OPTION ****************************
 // Uncomment next line to increase SDRAM and CORE clock speeds.
 //#define USE_FAST_CLOCK_MODE
+//*************************************************************
 
 // Select 8 or 16 for your bus width.
 #define RA8876_8080_BUS_WIDTH 8
