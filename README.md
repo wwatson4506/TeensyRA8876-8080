@@ -1,7 +1,7 @@
 # TeensyRA8876-8080
 ## A RA8876 8080 parallel driver library for Teensy boards and variants.
 
-### NEW SPEED IMPROVEMENT!! SEE BELOW...
+### ************** NEW SPEED IMPROVEMENT!! SEE BELOW. ******************
 
 This library is designed to be used with the TeensyRa8876-GFX-Common library and can be found here:
 - https://github.com/wwatson4506/TeensyRA8876-GFX-Common
