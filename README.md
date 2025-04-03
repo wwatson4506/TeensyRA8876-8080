@@ -113,7 +113,19 @@ NOTE: All power and ground pins should be connected.
 ***
 ### CONFIG FILE
 ## UPDATE: A little over 200ms performance improvement can be had by defining "USE_FAST_CLOCK_MODE" in the config file shown below.
-
+```
+#ifdef USE_FAST_CLOCK_MODE
+#define OSC_FREQ	10  // OSC clock frequency, unit: MHz.
+#define DRAM_FREQ	166 // 120 // SDRAM clock frequency, unit: MHz. RA8876
+#define CORE_FREQ	130 // 120 // Core (system) clock frequency, unit: MHz. 
+#define SCAN_FREQ	35  // 50  // Panel Scan clock frequency, unit: MHz.
+#else
+#define OSC_FREQ	10  // OSC clock frequency, unit: MHz.
+#define DRAM_FREQ	120 // 120 // SDRAM clock frequency, unit: MHz. RA8876
+#define CORE_FREQ	120 // 120 // Core (system) clock frequency, unit: MHz. 
+#define SCAN_FREQ	50  // 50  // Panel Scan clock frequency, unit: MHz.
+#endif
+```
 Both 8080 Parallel and SPI libraries have config file.
 Config file for FlexIO 8080 parallel:
 ```
