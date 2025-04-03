@@ -5,6 +5,9 @@
 #ifndef RA8876_CONFIG_H
 #define RA8876_CONFIG_H
 
+// Uncomment next line to increase SDRAM and CORE clock speeds.
+//#define USE_FAST_CLOCK_MODE
+
 // Select 8 or 16 for your bus width.
 #define RA8876_8080_BUS_WIDTH 8
 
