@@ -114,6 +114,7 @@ NOTE: All power and ground pins should be connected.
 ### CONFIG FILE
 ## UPDATE: A little over 200ms performance improvement can be had by defining "USE_FAST_CLOCK_MODE" in the config file shown below.
 Shown below is the difference in clock speeds for fast and normal modes. All examples have been tested in fast mode without issue.
+Defaults to normal mode...
 ```
 #ifdef USE_FAST_CLOCK_MODE
 #define OSC_FREQ	10  // OSC clock frequency, unit: MHz.
