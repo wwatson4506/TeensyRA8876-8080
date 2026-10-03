@@ -78,7 +78,7 @@ Teensy 4.1               GT9371
 - 24   ---------------> CPT_SCL  35
 ```
 ***
-### Dev Board 5                 RA8876
+### Dev Board 5 <-----------> RA8876
 
 ```
       PIN                      PIN
